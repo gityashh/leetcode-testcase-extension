@@ -13,7 +13,9 @@ async function getLeetCodeProblemData(slug) {
 
   // Extract problem description and test cases (example structure may vary)
   const problemDescription = doc.querySelector('.description__24sA').innerText;
+  console.log(problemDescription);
   const exampleTestCases = doc.querySelectorAll('.sample-testcase__eWtI pre');
+  console.log(exampleTestCases);
 
   // Format the test cases into an array
   let testCases = [];
