@@ -1,7 +1,5 @@
 const express = require("express");
 const app = express();
-const indexRouter = require("./routes/index-router");
-const puppeteerConfig = require("./config/puppeteer.config");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -15,6 +13,6 @@ app.post('/leetcode', (req, res) => {
     res.send({ status: 'Success', message: 'Data received' });
   });
   
-  app.listen(port, () => {
-    console.log(`Server listening on port ${port}`);
+  app.listen(3000, () => {
+    console.log(`Server listening on port 3000`);
   });
