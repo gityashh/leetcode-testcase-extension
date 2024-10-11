@@ -1,18 +1,21 @@
-// content.js
-// Extracts the current URL of the page
-const currentUrl = window.location.href;
-
-// Extract the question title from the URL
-// LeetCode question titles are usually part of the URL, so let's split the URL
-const parts = currentUrl.split('/');
-const questionTitle = parts[parts.length - 2];  // This will give you the title part before the ID
-
-// Log the URL and question title
-console.log("URL:", currentUrl);
-console.log("Question Title:", questionTitle);
-
-// Send the URL and title to the background script
-chrome.runtime.sendMessage({
-  url: currentUrl,
-  title: questionTitle
-});
+// background.js
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    // Extract the URL and title from the message
+    const { url, title } = message;
+    
+    // Send the data to your backend (replace with your actual backend endpoint)
+    fetch('http://localhost:3000/leetcode', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ url, title })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Data successfully sent to backend:', data);
+    })
+    .catch(error => {
+      console.error('Error sending data to backend:', error);
+    });
+  });
