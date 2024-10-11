@@ -7,13 +7,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
 app.post('/leetcode', (req, res) => {
-    const { url, title } = req.body;
-    console.log(`Received URL: ${url}, Title: ${title}`);
-    
-    // Handle your logic here (e.g., generate test cases)
-    
-    res.send({ status: 'Success', message: 'Data received' });
+    const { title } = req.body;
+    console.log('Received title:', title);
+    res.status(200).send({ message: 'Title received' });
   });
   
   app.listen(3000, () => {

@@ -1,20 +1,16 @@
 {
   "manifest_version": 3,
-  "name": "LeetCode URL Extractor",
+  "name": "LeetCode Title Extractor",
   "version": "1.0",
-  "description": "Extracts LeetCode question URLs",
-  "permissions": ["tabs", "activeTab"],
-  "background": {
-    "service_worker": "background.js"
-  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "http://localhost:3000/"  
+  ],
   "content_scripts": [
     {
-      "matches": ["https://leetcode.com/problems/*"],
+      "matches": ["https://leetcode.com/*"],
       "js": ["content.js"]
     }
-  ],
-  "host_permissions": ["https://leetcode.com/"],
-  "action": {
-    "default_popup": "popup.html"
-  }
+  ]
 }
