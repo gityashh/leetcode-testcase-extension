@@ -6,10 +6,15 @@ const puppeteerConfig = require("./config/puppeteer.config");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (res, req) => {
-    res.send("Hello World");
-});
-
-app.listen(3000, () => {
-    console.log("Server is running on port 3000");
-})
+app.post('/leetcode', (req, res) => {
+    const { url, title } = req.body;
+    console.log(`Received URL: ${url}, Title: ${title}`);
+    
+    // Handle your logic here (e.g., generate test cases)
+    
+    res.send({ status: 'Success', message: 'Data received' });
+  });
+  
+  app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
+  });

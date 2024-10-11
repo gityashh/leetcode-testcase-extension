@@ -1,20 +1,23 @@
 {
-    "manifest_version": 3,
-    "name": "LeetCode Test Case Helper",
-    "version": "1.0",
-    "description": "Provides example test cases on LeetCode problem pages.",
-    "permissions": [
-      "activeTab"
-    ],
-    "content_scripts": [
-      {
-        "matches": ["*://leetcode.com/problems/*"],
-        "js": ["content.js"]
-      }
-    ],
-    "action": {
-      "default_popup": "popup/popup.html"
-    },
-    "icons": {
+  "manifest_version": 3,
+  "name": "LeetCode Test Case Generator",
+  "version": "1.0",
+  "description": "Automatically extract LeetCode question titles and send to backend for test case generation.",
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://leetcode.com/problems/*"],
+      "js": ["content.js"]
     }
-  }
+  ],
+  "host_permissions": [
+    "https://leetcode.com/*"
+  ]
+}
