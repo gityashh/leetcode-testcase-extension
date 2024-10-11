@@ -8,7 +8,7 @@ const questionTitle = urlParts[urlParts.length - 2];  // Get second last part, w
 // 3. Send the title to the backend using fetch
 const sendTitleToBackend = async (title) => {
   try {
-    const response = await fetch('http://localhost:3000/api/title', {
+    const response = await fetch('http://localhost:3000/leetcode', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,4 +27,13 @@ const sendTitleToBackend = async (title) => {
 };
 
 // 4. Call the function to send the extracted title
-sendTitleToBackend(questionTitle);
+try {
+    const currentUrl = window.location.href;
+    const urlParts = currentUrl.split('/');
+    const questionTitle = urlParts[urlParts.length - 2];
+  
+    // Send the title to the backend
+    sendTitleToBackend(questionTitle);
+  } catch (error) {
+    console.error("An error occurred in content script:", error);
+  }
