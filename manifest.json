@@ -1,13 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "LeetCode Test Case Generator",
+  "name": "LeetCode URL Extractor",
   "version": "1.0",
-  "description": "Automatically extract LeetCode question titles and send to backend for test case generation.",
-  "permissions": [
-    "tabs",
-    "activeTab",
-    "scripting"
-  ],
+  "description": "Extracts LeetCode question URLs",
+  "permissions": ["tabs", "activeTab"],
   "background": {
     "service_worker": "background.js"
   },
@@ -17,7 +13,8 @@
       "js": ["content.js"]
     }
   ],
-  "host_permissions": [
-    "https://leetcode.com/*"
-  ]
+  "host_permissions": ["https://leetcode.com/"],
+  "action": {
+    "default_popup": "popup.html"
+  }
 }
